@@ -11,6 +11,7 @@ import Root from "./Components/Root";
 import About from "./Components/About";
 import SignUp from "./Pages/SignUp";
 import Home from "./Components/Home";
+import Dashboard from "./Components/Dashboard/Dashboard";
 
 const router = createBrowserRouter([
   {
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
         path: "/signup",
         element: <SignUp />,
       },
+      {
+        path: "/dashboard",
+        element: <Dashboard />,
+      }
     ],
   },
 ]);
