@@ -2,7 +2,6 @@ import React from "react";
 import Box from "@mui/material/Box";
 import { DataGrid, GridColDef, GridValueGetterParams } from "@mui/x-data-grid";
 import { rows, columns } from "./api";
-import { autocompleteClasses } from "@mui/material";
 import PieChart from "./Charts/PieChart";
 
 export interface IDashboard {}

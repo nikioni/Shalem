@@ -10,28 +10,28 @@ export const columns: GridColDef[] = [
     field: "food",
     headerName: "Food",
     type: "number",
-    width: 150,
+    width: 90,
     editable: true,
   },
   {
     field: "accomandation",
     headerName: "Accomandation",
     type: "number",
-    width: 150,
+    width: 120,
     editable: true,
   },
   {
     field: "entertainment",
     headerName: "Entertainment",
     type: "number",
-    width: 150,
+    width: 120,
     editable: true,
   },
   {
     field: "transport",
     headerName: "Transport",
     type: "number",
-    width: 150,
+    width: 120,
     editable: true,
   },
   {
@@ -45,7 +45,7 @@ export const columns: GridColDef[] = [
     field: "other",
     headerName: "Other",
     type: "number",
-    width: 150,
+    width: 120,
     editable: true,
   },
   {
@@ -53,7 +53,7 @@ export const columns: GridColDef[] = [
     headerName: "Total exp",
     description: "This column has a value getter and is not sortable.",
     sortable: false,
-    width: 150,
+    width: 120,
     valueGetter: (params: GridValueGetterParams) => {
       return (
         params.row.food +
