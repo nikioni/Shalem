@@ -1,14 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import { DataGrid, GridColDef, GridValueGetterParams } from "@mui/x-data-grid";
 import { rows } from "./api";
 import PieChart from "./Charts/PieChart";
 import { RootState } from "../../app/store";
 import { useAppSelector } from "../../app/hook";
+import LineChart from "./Charts/LineChart";
+import { Switch } from "@mui/material";
 
 export interface IDashboard {}
 
 const Dashboard: React.FC<IDashboard> = (props) => {
+  const [tableIsVisible, setTableIsVisible] = useState(true);
   const categories = useAppSelector(
     (state: RootState) => state.categories.value
   );
@@ -47,10 +50,22 @@ const Dashboard: React.FC<IDashboard> = (props) => {
     });
     return columns;
   };
+  const handleChange = () => {
+    setTableIsVisible(!tableIsVisible);
+    console.log(tableIsVisible)
+  };
   return (
     <>
       <h1>This is Dashboard</h1>
-      <Box sx={{ height: 800, width: "70%", margin: "auto" }}>
+      <Switch onChange={handleChange} defaultChecked />
+      <Box
+        sx={{
+          height: 800,
+          width: "900px",
+          margin: "auto",
+          display: tableIsVisible ? "block" : "none",
+        }}
+      >
         <DataGrid
           rows={rows}
           columns={getColumnsFromCategories()}
@@ -60,9 +75,18 @@ const Dashboard: React.FC<IDashboard> = (props) => {
           disableSelectionOnClick
           experimentalFeatures={{ newEditingApi: true }}
         />
-        <Box sx={{ width: "50%", margin: "auto" }}>
-          <PieChart></PieChart>
-        </Box>
+      </Box>
+      <Box
+        sx={{
+          width: "70%",
+          maxWidth: "900px",
+          margin: "auto",
+          display: "flex",
+          flexDirection: "column",
+        }}
+      >
+        <LineChart></LineChart>
+        <PieChart></PieChart>
       </Box>
     </>
   );
