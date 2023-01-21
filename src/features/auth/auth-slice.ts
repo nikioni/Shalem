@@ -18,15 +18,11 @@ const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    signin(state, action: PayloadAction<AuthState>) {
+    AUTH(state, action: PayloadAction<AuthState>) {
       state = action.payload;
       localStorage.setItem("profile", JSON.stringify({ state }));
     },
-    signup(state, action: PayloadAction<AuthState>) {
-      state = action.payload;
-      localStorage.setItem("profile", JSON.stringify({ state }));
-    },
-    signout(state){
+    SIGNOUT(state){
         state = initialState;
         localStorage.clear();
     }
@@ -34,5 +30,5 @@ const authSlice = createSlice({
   },
 });
 
-export const { signin, signup, signout } = authSlice.actions;
+export const { AUTH, SIGNOUT } = authSlice.actions;
 export default authSlice.reducer;

@@ -6,10 +6,13 @@ import {
   IconButton,
 } from "@mui/material";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import Visibility from '@mui/icons-material/Visibility';
+import Visibility from "@mui/icons-material/Visibility";
 import React from "react";
 
-export interface IPasswordInput { name: string}
+export interface IPasswordInput {
+  name: string;
+  onChange?: React.ChangeEventHandler<HTMLInputElement>;
+}
 
 const PasswordInput: React.FC<IPasswordInput> = (props) => {
   const [showPassword, setShowPassword] = React.useState(false);
@@ -25,6 +28,8 @@ const PasswordInput: React.FC<IPasswordInput> = (props) => {
       <FormControl sx={{ width: "25ch" }} variant="outlined">
         <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
         <OutlinedInput
+          name={props.name}
+          onChange={props.onChange}
           id="outlined-adornment-password"
           type={showPassword ? "text" : "password"}
           endAdornment={
