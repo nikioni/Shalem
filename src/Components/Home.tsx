@@ -2,13 +2,16 @@ import React, { useState } from "react";
 import { Form, Link, redirect, useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../app/hook";
 import { signIn } from "../api";
-import { userLogin } from "../actions/actions";
+import { userLogin } from "../features/auth/thunk";
+import { blankForm } from "../features/auth/auth-slice";
+import * as api from "../api/index";
+import { profile } from "console";
 
 export interface IHome {}
 
 const Home: React.FC<IHome> = (props) => {
   const auth = useAppSelector((state) => state.auth);
-  const [formData, setFormData] = useState(auth);
+  const [formData, setFormData] = useState(blankForm);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
@@ -17,8 +20,17 @@ const Home: React.FC<IHome> = (props) => {
   };
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    await api
+      .signIn(formData)
+      .then((response) => {
+        localStorage.setItem("profile", JSON.stringify(response.data));
+        console.log(response)
+      })
+      .catch((e) => {
+        console.log(e);
+      });
 
-    console.log(userLogin(formData));
+    // userLogin(formData);
   };
   return (
     <>

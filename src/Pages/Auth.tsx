@@ -2,7 +2,7 @@ import { Button, Grid, TextField } from "@mui/material";
 import React, { useState } from "react";
 import PasswordInput from "../Components/PasswordInput";
 import { useAppDispatch, useAppSelector } from "../app/hook";
-import { SIGNOUT, AUTH } from "../features/auth/auth-slice";
+import { SIGNOUT, AUTH, blankForm } from "../features/auth/auth-slice";
 import { signIn, signUp } from "../api";
 import { redirect, useNavigate } from "react-router-dom";
 
@@ -12,7 +12,7 @@ const Auth: React.FC<IAuth> = (props) => {
   const auth = useAppSelector((state) => state.auth);
 
   const [isSignUp, setIsSignUp] = useState(true);
-  const [formData, setFormData] = useState(auth);
+  const [formData, setFormData] = useState(blankForm);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
